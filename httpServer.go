@@ -17,6 +17,7 @@ import (
 )
 
 var server = &HttpServer{}
+var proxyPath = ""
 
 type HttpServer struct {
 	port     int
@@ -42,6 +43,8 @@ func (c *HttpServer) Start() error {
 	if server.serv != nil {
 		return errors.New("server already started")
 	}
+	proxyPath = fmt.Sprintf("%s/cache/proxy", GoApp.SdAppPath())
+	anlib.LogInfo("ruisgo-proxyPath", "proxyPath:", proxyPath)
 	http.HandleFunc("/proxy/video", c.videoProxyHandle)
 	go func() {
 		for _, v := range ports {
