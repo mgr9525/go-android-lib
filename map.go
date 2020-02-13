@@ -30,11 +30,11 @@ func (c *GoMap) Get(key string) interface{} {
 	})
 	return c.mp.Get(key)
 }
-func (c *GoMap) Set(key string) interface{} {
+func (c *GoMap) Set(key string, v interface{}) {
 	defer ruisUtil.Recovers("Set", func(errs string) {
 		anlib.LogError("ruisgo-GoMap", "Set:"+errs)
 	})
-	return c.mp.Get(key)
+	c.mp.Set(key, v)
 }
 func (c *GoMap) String() string {
 	defer ruisUtil.Recovers("ToString", func(errs string) {
