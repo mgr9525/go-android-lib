@@ -264,7 +264,7 @@ func (c *Request) DoJsono(body *GoMap) (ret *Response, reterr error) {
 		reterr = errors.New(errs)
 	})
 	c.Method = "POST"
-	bts, err := json.Marshal(body)
+	bts, err := json.Marshal(body.mp)
 	if err != nil {
 		return nil, err
 	}
